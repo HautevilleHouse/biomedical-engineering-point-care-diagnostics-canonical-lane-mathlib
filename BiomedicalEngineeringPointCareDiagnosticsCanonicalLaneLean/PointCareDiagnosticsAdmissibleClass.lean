@@ -1,0 +1,24 @@
+import canonicalLaneMathlib.AdmissibleClass
+import HautevilleHouse.BiomedicalEngineeringPointCareDiagnostics.CompartmentModel
+import HautevilleHouse.BiomedicalEngineeringPointCareDiagnostics.Pharmacokinetics
+import HautevilleHouse.BiomedicalEngineeringPointCareDiagnostics.DiagnosticInference
+import HautevilleHouse.BiomedicalEngineeringPointCareDiagnostics.SurvivalAnalysis
+
+namespace HautevilleHouse
+namespace BiomedicalEngineeringPointCareDiagnostics
+
+structure AdmissibleClass where
+  object : PointCareDiagnosticsAdmittedObject
+  endpointSatisfied : Prop
+  remainderRecorded : Prop
+  gateWitness : endpointSatisfied ∨ remainderRecorded
+
+structure PointCareDiagnosticsAdmittedObject where
+  compartmentModel : CompartmentModel
+  pharmacokineticsModel : PharmacokineticsModel
+  diagnosticTest : DiagnosticTest
+  survivalModel : SurvivalModel
+  conclusion : CompartmentModelClosed compartmentModel ∧ PharmacokineticsClosed pharmacokineticsModel ∧ DiagnosticTestClosed diagnosticTest ∧ SurvivalModelClosed survivalModel
+
+end BiomedicalEngineeringPointCareDiagnostics
+end HautevilleHouse
